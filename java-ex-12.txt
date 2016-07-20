@@ -1,0 +1,30 @@
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution{
+   public static void main(String[] args){
+      
+      Scanner in = new Scanner(System.in);
+      int testCases = Integer.parseInt(in.nextLine());
+      while(testCases>0){
+         String line = in.nextLine();
+          Pattern ptr=Pattern.compile("<(\\w+\\s*\\w*)>(<\\w+\\s*\\w*>)*((.*))<*(</\\2>)*>*(</\\1>)");
+         Matcher match=ptr.matcher(line);
+          if(match.find())
+              {
+                  System.out.println(match.group(4).replaceAll("<.*?>|</.*?>",""));
+              
+          }else{
+      
+              System.out.println("None");
+          }
+             
+         
+         testCases--;
+      }
+   }
+}

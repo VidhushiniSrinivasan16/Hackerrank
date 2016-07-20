@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        String input=scan.next();
+        int k=scan.nextInt();
+        List<String> lst=new ArrayList<String>();
+        for(int i=0;i<input.length();i++)
+            {
+            if(input.length()-i>=k)
+                {
+                lst.add(input.substring(i,k+i));
+            }
+        }
+        Collections.sort(lst);
+        System.out.println(lst.get(0));
+        System.out.println(lst.get(lst.size()-1));
+    }
+}

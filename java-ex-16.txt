@@ -1,0 +1,76 @@
+import java.util.*;
+class Solution{
+      private static final char L_Circle='(';
+       private static final char L_Flower='{';
+       private static final char L_Sqr='[';
+       private static final char R_Circle=')';
+       private static final char R_Flower='}';
+       private static final char R_Sqr=']';
+   public static void main(String []argh)
+   {
+      Scanner sc = new Scanner(System.in);
+    
+      while (sc.hasNext()) {
+         String input=sc.next();
+         boolean flag=isBalanced(input);
+            if(flag==true)
+              {
+              System.out.println("true");
+          }else
+              {
+           System.out.println("false");   
+          }  
+          }
+          
+   }
+    public static boolean isBalanced(String input)
+        {
+    
+         Stack<Character> st=new Stack<Character>();
+          
+          for(int i=0;i<input.length();i++)
+              {
+              if(input.charAt(i)==L_Circle)
+                  {
+                  st.push(L_Circle);
+              }else if(input.charAt(i)==L_Flower)
+                  {
+                   st.push(L_Flower);
+              }else if(input.charAt(i)==L_Sqr)
+                  {
+                   st.push(L_Sqr);
+              }else if(input.charAt(i)==R_Circle)
+                  {
+                   if(st.isEmpty())
+                       {
+                       return false;
+                   }
+                   if(st.pop()!=L_Circle)
+                       {
+                     return false;
+                   }
+              }else if(input.charAt(i)==R_Flower)
+                  {
+                   if(st.isEmpty())
+                       {
+                       return false;
+                   }
+                   if(st.pop()!=L_Flower)
+                       {
+                     return false;
+                   }
+              }else if(input.charAt(i)==R_Sqr)
+                  {
+                   if(st.isEmpty())
+                       {
+                       return false;
+                   }
+                   if(st.pop()!=L_Sqr)
+                       {
+                      return false;
+                   }
+              }
+    }
+        return st.isEmpty();
+}
+}

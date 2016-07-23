@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int[] arr=new int[100];int prev=0;
+        int inp_arr_length=sc.nextInt();
+        HashMap<Integer,StringBuilder> hm=new HashMap<Integer,StringBuilder>();
+        int m=0;int l=0;String empty=" ";
+        for(int i=0;i<inp_arr_length;i++)
+            {
+            m=sc.nextInt();
+            arr[m]++;l=inp_arr_length/2;
+            String k=sc.next();
+            StringBuilder sb=hm.get(m);
+            if(i<l)
+                k="-";
+            if(sb==null)
+            hm.put(m,new StringBuilder(k));
+            else
+            hm.put(m,sb.append(k).append(" "));    
+        }
+        for(int i=0;i<100;i++)
+            {
+            if(hm.get(i)!=null)
+            {
+             System.out.format("%s",hm.get(i));        
+            }
+            else
+                break;
+        }
+    }
+} 

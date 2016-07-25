@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int l=0;l<t;l++)
+            {
+            try
+                {
+            int n=sc.nextInt();
+            char[][] G=new char[n][n];boolean flag=true;
+            for(int i=0;i<n;i++)
+                {
+                
+                G[i]=sc.next().toCharArray();
+                Arrays.sort(G[i]); 
+                
+            }
+               
+            for(int i=0;i<n;i++)
+                {
+                for(int j=0;j<n-1;j++)
+                    {
+                    if(G[j+1][i]<G[j][i])
+                        {
+                        flag=false;
+                        break;
+                    }
+                }
+                  
+                }
+               
+          
+                
+            if(flag==true)
+                System.out.println("YES");
+            else
+                 System.out.println("NO");
+            }
+            catch(Exception e)
+                {
+                e.printStackTrace();
+            }
+        }
+    }
+}

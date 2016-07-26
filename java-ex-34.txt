@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        ArrayList<Integer> impContests=new ArrayList<Integer>();
+        int luck=0;
+        int maxLuckBal=0;
+        for(int l=0;l<n;l++)
+            {
+            luck=sc.nextInt();
+            int T=sc.nextInt();
+            if(T==1)
+                {
+                impContests.add(luck);
+            }else
+                {
+               if(luck<0)
+               maxLuckBal= maxLuckBal-luck;
+                else
+                maxLuckBal= maxLuckBal+luck; 
+                
+            }
+        }
+    
+           Collections.sort(impContests,Collections.reverseOrder());
+        //System.out.println(impContests);
+            for(int i=0;i<impContests.size();i++)
+                {
+                if(luck<0)
+                    {
+               maxLuckBal= maxLuckBal-impContests.get(i);
+                }
+                else
+                    {
+                    if(k!=0)
+                        {
+                      maxLuckBal=maxLuckBal+impContests.get(i);k--; 
+                    //System.out.println(luck);
+                    }
+                    else
+                        {
+                      maxLuckBal=maxLuckBal-impContests.get(i) ; 
+                     
+                    }
+                }
+            }
+            
+        
+       System.out.println(maxLuckBal);
+    }
+}

@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+      
+        for(int l=0;l<t;l++)
+            {
+            long number=sc.nextLong();
+           System.out.println(~(number) & 0xffffffffl);
+           }
+    }
+}

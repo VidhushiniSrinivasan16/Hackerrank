@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int l=0;l<t;l++)
+            {
+            int m=sc.nextInt();
+            int n=sc.nextInt();
+            int c[]=new int[n];
+            for(int j=0;j<n;j++)
+                {
+                c[j]=sc.nextInt();
+            }
+            for(int i=0;i<n-1;i++)
+                {
+                for(int j=i+1;j<n;j++)
+                    {
+                    if(c[i]+c[j]==m)
+                        {
+                        System.out.format("%d %d\n",Math.min(i,j)+1,Math.max(i,j)+1);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}

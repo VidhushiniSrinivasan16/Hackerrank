@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+ public static int qselect(int a[], int low, int high, int k)
+{
+  if(k>0 && k<=high-low+1)
+      {
+     int pos=partition(a,low,high);
+      if(pos-low==k-1)
+          return a[pos];
+      if(pos-low>k-1)
+          return qselect(a,low,pos-1,k);
+      
+          return qselect(a,pos+1,high,k-pos+low-1);
+  }
+      return Integer.MAX_VALUE;
+ }
+   
+
+ 
+     public static int partition(int a[],int low,int high)
+        {
+        int i,j,temp,pivot;
+         i=low;
+         pivot=a[high];
+         for(j=low;j<=high;j++)
+             {
+             if(a[j]>pivot)
+                 {
+                 temp=a[i];
+                 a[i]=a[j];
+                 a[j]=temp;
+                 i=i+1;
+             }
+         }
+         temp=a[i];
+         a[i]=a[high];
+         a[high]=temp;
+         return i;
+    }
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int a[]=new int[n];
+        for(int i=0;i<n;i++)
+            {
+            a[i]=sc.nextInt();
+        }
+       System.out.println(qselect(a,0,n-1,(n/2)+1));
+       
+    }
+}

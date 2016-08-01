@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int c[] = new int[m];
+        for(int c_i=0; c_i < m; c_i++){
+            c[c_i] = in.nextInt();
+        }
+        //Arrays.sort(c);
+        int maxVal=0;int result=0;
+     if(n==m)
+         result=0;
+        for(int i=0;i<n;i++)
+            {
+            result=Math.abs(c[0]-i);
+            for(int j=1;j<m;j++)
+                {
+                if(Math.abs(c[j]-i)<result)
+                    result=Math.abs(c[j]-i);
+            }
+            if(result>maxVal)
+                maxVal=result;
+        }
+        System.out.println(maxVal);
+    }
+}

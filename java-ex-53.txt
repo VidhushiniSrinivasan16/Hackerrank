@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int k=0;k<t;k++)
+            {
+            int n1=sc.nextInt();
+            int n2=sc.nextInt();
+            System.out.println((int)(Math.floor(Math.sqrt(n2))-Math.ceil(Math.sqrt(n1)))+1);
+        }
+    }
+}

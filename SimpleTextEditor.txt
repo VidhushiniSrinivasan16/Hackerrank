@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int lines = sc.nextInt();
+        int k =0;
+        Stack<String> st = new Stack<String>();
+        StringBuilder str = new StringBuilder("");
+        String prev="";
+        st.push(prev);
+        for(int i=1;i<=lines;i++)
+        {
+            int opr=sc.nextInt();
+            switch(opr){
+                case 1:
+                    str.append(sc.next());
+                    prev=str.toString();
+                    st.push(prev);
+                    break;
+                case 2:
+                    k = sc.nextInt();
+                    int diff=str.length()-k;
+                    if(diff>=0)
+                          str.setLength(diff);
+                    else{
+                        str.setLength(0);
+                    }
+                    prev=str.toString();
+                    st.push(prev);
+                    break;
+                case 3:
+                    k = sc.nextInt();
+                    if(str.length()>=k)
+                         System.out.println(str.charAt(k-1));
+                    break;
+                case 4:
+                       st.pop();
+                       str= new StringBuilder(st.peek());
+                    break;
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+Recursive
+
+
+
+ /* Node is defined as :
+ class Node 
+    int data;
+    Node left;
+    Node right;
+    
+    */
+
+static Node lca(Node root,int v1,int v2)
+    {
+
+    	if(root==null)
+            return null;
+        if(root.data>v1 && root.data>v2)
+            return lca(root.left,v1,v2);
+        if(root.data<v1 && root.data < v2)
+            return lca(root.right,v1,v2);
+    return root;
+    }
+
+
+Iterative
+
+
+
+ /* Node is defined as :
+ class Node 
+    int data;
+    Node left;
+    Node right;
+    
+    */
+
+static Node lca(Node root,int v1,int v2)
+    {
+     while(root!=null){
+         if(root.data>v1 && root.data>v2)
+             root=root.left;
+         else if(root.data<v1 && root.data < v2)
+             root=root.right;
+         else 
+             break;
+     }
+    return root;
+    	
+    }

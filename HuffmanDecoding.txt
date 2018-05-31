@@ -1,0 +1,35 @@
+/*  
+	class Node
+		public  int frequency; // the frequency of this tree
+    	public  char data;
+    	public  Node left, right;
+    
+*/ 
+
+void decode(String S ,Node root)
+    {
+        
+    int k=0;
+    Node node = root;
+    Node prev=null;
+
+    StringBuilder sb=new StringBuilder("");
+    
+     while(k<S.length()){
+         prev=node;
+         if(S.charAt(k)=='0'){
+             node=node.left;    
+         }else{
+             node = node.right;
+             }
+         if(node==null){
+              node=root;
+              sb.append(prev.data);
+              continue;
+         }
+         k++;
+         }
+    sb.append(node.data);
+    System.out.println(sb.toString());
+       
+    }

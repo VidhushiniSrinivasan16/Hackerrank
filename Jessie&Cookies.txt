@@ -1,0 +1,55 @@
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    private static PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+    static int cookies(int k, int[] A) {
+        int n =A.length;
+        int count=0;
+        for(int i=0;i<n;i++){
+            minHeap.add(A[i]);
+        }
+       while(minHeap.size()>=2 && minHeap.peek()<k){
+           int firstLeastSweet = minHeap.poll();
+           int secondLeastSweet = minHeap.poll();
+           minHeap.add((1*firstLeastSweet)+2*(secondLeastSweet));
+           count++;
+       }
+        if(!minHeap.isEmpty() && minHeap.peek()<k){
+            return -1;
+        }
+        return count;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] nk = scanner.nextLine().split(" ");
+
+        int n = Integer.parseInt(nk[0].trim());
+
+        int k = Integer.parseInt(nk[1].trim());
+
+        int[] A = new int[n];
+
+        String[] AItems = scanner.nextLine().split(" ");
+
+        for (int AItr = 0; AItr < n; AItr++) {
+            int AItem = Integer.parseInt(AItems[AItr].trim());
+            A[AItr] = AItem;
+        }
+
+        int result = cookies(k, A);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+    }
+}

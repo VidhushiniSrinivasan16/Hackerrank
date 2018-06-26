@@ -1,0 +1,111 @@
+Solution 1:(timeout)
+public static double getMedian(List<Integer> lis){
+        if(lis.isEmpty()){
+            return 0;
+        }else if(lis.size()%2==1){
+            return lis.get(lis.size()/2);
+        }else{
+            return Math.round((lis.get(lis.size()/2-1)+lis.get(lis.size()/2)))/2.0;
+        }
+    }
+    
+    static double[] runningMedian(int[] a) {
+        int n = a.length;
+        double[] res = new double[n];
+        List<Integer> lis = new ArrayList<Integer>();
+        lis.add(a[0]);
+        for(int i=1;i<n;i++){
+            res[i-1]=getMedian(lis);
+            lis.add(a[i]);
+            Collections.sort(lis);
+        }
+        res[n-1]=getMedian(lis);
+        return res;
+
+    }
+
+
+Solution 2:
+
+
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+    private static PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+    private static PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+    /*
+     * Complete the runningMedian function below.
+     */
+    static double[] runningMedian(int[] a) {
+        int n =a.length;
+        double[] res=new double[n];
+        for(int i=0;i<n;i++){
+            addToHeap(a[i]);
+            res[i]=getMedianValue();
+        }
+      return res;
+    }
+    
+    static void addToHeap(int val){
+        if(maxHeap.isEmpty()){
+            maxHeap.add(val);
+        }else if(maxHeap.size()==minHeap.size()){
+            if(val < minHeap.peek()){
+                maxHeap.add(val);
+            }else{
+                minHeap.add(val);
+                maxHeap.add(minHeap.remove());
+            }
+        }else if(maxHeap.size()>minHeap.size()){
+            if(val > maxHeap.peek()){
+                minHeap.add(val);
+            }else{
+                maxHeap.add(val);
+                minHeap.add(maxHeap.remove());
+            }
+        }
+    }
+    
+    static double getMedianValue(){
+        if(maxHeap.isEmpty()){
+            return 0;
+        }else if(maxHeap.size()==minHeap.size()){
+            return (maxHeap.peek()+minHeap.peek())/2.0;
+        }else{
+            return maxHeap.peek();
+        }
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int aCount = Integer.parseInt(scanner.nextLine().trim());
+
+        int[] a = new int[aCount];
+
+        for (int aItr = 0; aItr < aCount; aItr++) {
+            int aItem = Integer.parseInt(scanner.nextLine().trim());
+            a[aItr] = aItem;
+        }
+
+        double[] result = runningMedian(a);
+
+        for (int resultItr = 0; resultItr < result.length; resultItr++) {
+            bufferedWriter.write(String.valueOf(result[resultItr]));
+
+            if (resultItr != result.length - 1) {
+                bufferedWriter.write("\n");
+            }
+        }
+
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+    }
+}

@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Stack<Long> mainStack = new Stack<Long>();
+        Stack<Long> auxStack = new Stack<Long>();
+        long holdVal=-1;
+        int N = sc.nextInt();
+        for(int i=1;i<=N;i++)
+        {
+            int type = sc.nextInt();
+            
+            switch(type){
+                case 1:
+                    long val= sc.nextLong();
+                    mainStack.push(val);
+                    if(mainStack.size()==1)
+                        holdVal=val;
+                    break;
+                case 2:
+                    if(mainStack.isEmpty() && auxStack.isEmpty())
+                       System.out.println("Both stacks are Empty!!!!ERROR!");
+                    if(auxStack.isEmpty()){
+                       while(!mainStack.isEmpty()){
+                           auxStack.push(mainStack.pop());
+                         }
+                        holdVal=-1;
+
+                    }
+                   long popped_val= auxStack.pop();
+                   break;
+                case 3:
+                    if(!auxStack.isEmpty())
+                       System.out.println(auxStack.peek());
+                    else if(holdVal!=-1)
+                        System.out.println(holdVal);
+                    else
+                        System.out.println("ERROR!!!");
+                    break;
+            }
+        }
+    }
+}

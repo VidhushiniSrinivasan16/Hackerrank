@@ -1,0 +1,8 @@
+if __name__ == '__main__':
+    lis_full=[]
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        lis_full.append([name,score])
+    second_lowest_score = sorted(list(set(score for name,score in lis_full)))[1]
+    print('\n'.join(name for name, score in sorted(lis_full) if score==second_lowest_score))
